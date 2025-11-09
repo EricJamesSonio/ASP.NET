@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YzDpjMYOhOU=",
+  "dgSpecHash": "49WhcVYSErM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Windows 10\\Desktop\\Personal\\Studies\\Dotnet\\MyApp\\MyApp.csproj",
+  "projectFilePath": "C:\\Users\\Windows 10\\Desktop\\Personal\\Studies\\Dotnet\\myapp\\MyApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Windows 10\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Windows 10\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.10\\microsoft.aspnetcore.openapi.9.0.10.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Windows 10\\Desktop\\Personal\\Studies\\Dotnet\\MyApp\\MyApp.csproj": {}
+    "C:\\Users\\Windows 10\\Desktop\\Personal\\Studies\\Dotnet\\myapp\\MyApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Windows 10\\Desktop\\Personal\\Studies\\Dotnet\\MyApp\\MyApp.csproj": {
+    "C:\\Users\\Windows 10\\Desktop\\Personal\\Studies\\Dotnet\\myapp\\MyApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Windows 10\\Desktop\\Personal\\Studies\\Dotnet\\MyApp\\MyApp.csproj",
+        "projectUniqueName": "C:\\Users\\Windows 10\\Desktop\\Personal\\Studies\\Dotnet\\myapp\\MyApp.csproj",
         "projectName": "MyApp",
-        "projectPath": "C:\\Users\\Windows 10\\Desktop\\Personal\\Studies\\Dotnet\\MyApp\\MyApp.csproj",
+        "projectPath": "C:\\Users\\Windows 10\\Desktop\\Personal\\Studies\\Dotnet\\myapp\\MyApp.csproj",
         "packagesPath": "C:\\Users\\Windows 10\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Windows 10\\Desktop\\Personal\\Studies\\Dotnet\\MyApp\\obj\\",
+        "outputPath": "C:\\Users\\Windows 10\\Desktop\\Personal\\Studies\\Dotnet\\myapp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Windows 10\\AppData\\Roaming\\NuGet\\NuGet.Config"
