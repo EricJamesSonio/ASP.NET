@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyApp.Data;
 using MyApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyApp.Controllers
 {
@@ -16,18 +17,17 @@ namespace MyApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetUsers()
+        public async Task<ActionResult<List<User>>> GetUsers()
         {
-            var users = _context.Users.ToList();
-            return Ok(users);
+            return await _context.Users.ToListAsync();
         }
 
         [HttpPost]
-        public IActionResult AddUser(User user)
+        public async Task<ActionResult<User>> CreateUser(User user)
         {
             _context.Users.Add(user);
-            _context.SaveChanges();
-            return Ok(user);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetUsers), new { id = user.Id }, user);
         }
     }
 }
