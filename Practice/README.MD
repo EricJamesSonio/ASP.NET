@@ -1,1 +1,0 @@
-Random practices! Just random 
