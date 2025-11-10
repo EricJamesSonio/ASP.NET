@@ -1,0 +1,26 @@
+<div class="ranking-container">
+  <h2>Candidate Rankings</h2>
+
+  <!-- Leaderboard -->
+  <div class="leaderboard">
+    <div *ngFor="let candidate of candidates; let i = index" class="candidate-card">
+      <span class="rank">{{ getRankEmoji(i) }} {{ i + 1 }}</span>
+      <img [src]="candidate.imageUrl || 'assets/default-avatar.png'" alt="{{ candidate.name }}" class="candidate-img">
+      <div class="candidate-info">
+        <h3>{{ candidate.name }}</h3>
+        <p>{{ candidate.party }}</p>
+        <p>Votes: {{ candidate.voteCount }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div class="chart-container">
+<canvas
+  baseChart
+  [data]="chartData"
+  [options]="chartOptions"
+  [type]="'bar'"
+></canvas>
+  </div>
+</div>

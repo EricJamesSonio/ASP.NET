@@ -3,14 +3,15 @@
     <img [src]="candidate.imageUrl" alt="{{candidate.name}}" class="candidate-photo">
     <h3>{{ candidate.name }}</h3>
     <p>{{ candidate.party }}</p>
-    <p>Votes: {{ candidate.voteCount }}</p>
-    <input type="radio" name="selectedCandidate" [(ngModel)]="selectedCandidateId" [value]="candidate.id">
+    <p class="vote-count">Votes: {{ candidate.voteCount }}</p>
+
+    <input type="radio" name="selectedCandidate" [(ngModel)]="selectedCandidateId" [value]="candidate.id" id="candidate-{{candidate.id}}">
+    <label for="candidate-{{candidate.id}}">Select</label>
   </div>
 </div>
 
 <button (click)="vote()">Vote</button>
 
-<!-- Centered popup message -->
 <div *ngIf="message" 
      class="popup-message"
      [ngClass]="{'success': message === 'Vote cast successfully!', 'error': message !== 'Vote cast successfully!'}">

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators'; 
 
 // Match backend CandidateDto
 export interface Candidate {
@@ -41,4 +42,11 @@ export class VoteService {
   getResults(): Observable<{ candidate: string; votes: number }[]> {
     return this.http.get<{ candidate: string; votes: number }[]>(`${environment.apiUrl}/vote/results`);
   }
+
+  getCandidatesByRanking(): Observable<Candidate[]> {
+  return this.getCandidates().pipe(
+    map(candidates => candidates.sort((a, b) => b.voteCount - a.voteCount))
+  );
 }
+}
+
