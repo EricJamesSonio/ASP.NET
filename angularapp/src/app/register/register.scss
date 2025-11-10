@@ -1,0 +1,82 @@
+.register-form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px 25px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  h2 {
+    margin-bottom: 25px;
+    color: #333;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.3s;
+
+    &:focus {
+      border-color: #5b9bd5;
+      box-shadow: 0 0 5px rgba(91, 155, 213, 0.5);
+      outline: none;
+    }
+
+    &::placeholder {
+      color: #aaa;
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: #5b9bd5;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+      background: #4a8ac2;
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  .error {
+    margin-top: 15px;
+    color: #e74c3c;
+    font-size: 14px;
+  }
+
+  .success {
+    margin-top: 15px;
+    color: #27ae60;
+    font-size: 14px;
+  }
+
+  p {
+    margin-top: 20px;
+    font-size: 14px;
+
+    a {
+      color: #5b9bd5;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

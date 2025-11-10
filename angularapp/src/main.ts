@@ -1,20 +1,13 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
-
+import 'zone.js';
 import { App } from './app/app';
-import { LoginComponent } from './app/login/login';
-import { AdminDashboardComponent } from './app/admindashboard/admindashboard';
-import { VoterDashboardComponent } from './app/voterdashboard/voterdashboard';
+import { routes } from './app/app.routes'; 
 
 bootstrapApplication(App, {
   providers: [
-    provideRouter([
-      { path: 'login', component: LoginComponent },
-      { path: 'admin', component: AdminDashboardComponent },
-      { path: 'voter', component: VoterDashboardComponent },
-      { path: '**', redirectTo: 'login' }
-    ]),
-    provideHttpClient(), // provides HttpClient to all services
+    provideHttpClient(),      // HttpClient available globally
+    provideRouter(routes)     // use routes from app.routes.ts
   ]
 }).catch(err => console.error(err));

@@ -1,48 +1,61 @@
 using Microsoft.EntityFrameworkCore;
 using MyApp.Data;
-using Microsoft.OpenApi.Models; 
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add controllers
+// ---------------------
+// 1️⃣  Add services
+// ---------------------
 builder.Services.AddControllers();
-
-// Add Swagger (OpenAPI) for API testing
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Configure MySQL connection
+// 🧠 Hardcode the MySQL version instead of AutoDetect (avoids slow startup)
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
-        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+        new MySqlServerVersion(new Version(8, 0, 32)) // ← change to your version
     )
 );
 
-// Optional: allow Angular frontend to call this API (CORS)
+// ---------------------
+// 2️⃣  Configure CORS properly (fast, cacheable)
+// ---------------------
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
+    options.AddPolicy("AllowAngular", policy =>
     {
-        policy.AllowAnyOrigin() // Or set Angular URL: "http://localhost:4200"
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        policy
+            .WithOrigins("http://localhost:4200")  // ✅ your Angular dev server
+            .AllowAnyHeader()
+            .AllowAnyMethod();
     });
 });
 
 var app = builder.Build();
 
-// Use Swagger in development
+// ---------------------
+// 3️⃣  Middleware order (important!)
+// ---------------------
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// Enable CORS
-app.UseCors();
+app.UseRouting();             // must come first
+app.UseCors("AllowAngular");  // then CORS
+app.UseAuthorization();       // then auth (if any)
+app.MapControllers();         // finally, your controllers
 
-// Map controllers
-app.MapControllers();
+// ---------------------
+// 4️⃣  (Optional) Warm up the DB so first request is fast
+// ---------------------
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.CanConnect();
+}
 
 app.Run();
