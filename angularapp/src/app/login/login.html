@@ -4,4 +4,5 @@
   <input type="password" [(ngModel)]="password" placeholder="Password" />
   <button (click)="login()">Login</button>
   <div *ngIf="error" class="error">{{ error }}</div>
+  <p>Doesn't have an account yet go to ? <a routerLink="/register">Sign up</a></p>
 </div>
