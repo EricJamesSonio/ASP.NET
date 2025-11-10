@@ -6,5 +6,6 @@ namespace MyApp.Models
         public string? Name { get; set; }
         public string? Party { get; set; }
         public int VoteCount { get; set; }
+        public string? ImageUrl { get; set; } // <-- new
     }
 }

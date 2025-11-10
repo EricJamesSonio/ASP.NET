@@ -9,7 +9,8 @@ export interface Candidate {
   id: number;
   name: string;
   party?: string;
-  voteCount: number; // match backend property exactly
+  voteCount: number; 
+  imageUrl?: string;
 }
 
 export interface VoteRequest {

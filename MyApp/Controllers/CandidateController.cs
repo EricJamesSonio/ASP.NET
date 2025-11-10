@@ -26,7 +26,8 @@ namespace MyApp.Controllers
                     Id = c.Id,
                     Name = c.Name,
                     Party = c.Party,
-                    VoteCount = c.Votes.Count
+                    VoteCount = c.Votes.Count,
+                    ImageUrl = c.ImageUrl 
                 })
                 .ToListAsync();
 
