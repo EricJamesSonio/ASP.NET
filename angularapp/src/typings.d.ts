@@ -1,1 +1,1 @@
-declare module 'ng2-charts';
+//declare module 'ng2-charts';

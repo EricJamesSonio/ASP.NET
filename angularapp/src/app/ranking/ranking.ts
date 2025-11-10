@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { VoteService, Candidate } from '../services/vote.service';
 import { CommonModule } from '@angular/common';
 import { ChartData, ChartOptions } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts'; // <-- use directive only
+import { BaseChartDirective } from 'ng2-charts'; // ✅ new import
+import { VoteService, Candidate } from '../services/vote.service';
+import { Chart, BarController, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
+
+// ✅ Register the required components
+Chart.register(BarController, BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 @Component({
   selector: 'app-ranking',
   standalone: true,
-  imports: [CommonModule, BaseChartDirective], // <-- correct for standalone
+  imports: [CommonModule, BaseChartDirective], // ✅ replace NgChartsModule
   templateUrl: './ranking.html',
   styleUrls: ['./ranking.scss']
 })
 export class RankingComponent implements OnInit {
   candidates: Candidate[] = [];
 
-  // Chart data
   chartData: ChartData<'bar'> = {
     labels: [],
     datasets: [{ label: 'Votes', data: [], backgroundColor: [] }]
@@ -35,7 +38,6 @@ export class RankingComponent implements OnInit {
     this.voteService.getCandidatesByRanking().subscribe({
       next: candidates => {
         this.candidates = candidates;
-
         this.chartData.labels = candidates.map(c => c.name);
         this.chartData.datasets[0].data = candidates.map(c => c.voteCount);
         this.chartData.datasets[0].backgroundColor = candidates.map(
@@ -46,7 +48,6 @@ export class RankingComponent implements OnInit {
     });
   }
 
-  // Medal emoji for top 3
   getRankEmoji(index: number) {
     if (index === 0) return '🥇';
     if (index === 1) return '🥈';
