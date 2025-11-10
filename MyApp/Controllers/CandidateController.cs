@@ -16,12 +16,24 @@ namespace MyApp.Controllers
             _context = context;
         }
 
+        // GET /api/candidate
         [HttpGet]
-        public async Task<ActionResult<List<Candidate>>> GetCandidates()
+        public async Task<ActionResult<List<CandidateDto>>> GetCandidates()
         {
-            return await _context.Candidates.Include(c => c.Votes).ToListAsync();
+            var candidates = await _context.Candidates
+                .Select(c => new CandidateDto
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Party = c.Party,
+                    VoteCount = c.Votes.Count
+                })
+                .ToListAsync();
+
+            return Ok(candidates);
         }
 
+        // POST /api/candidate
         [HttpPost]
         public async Task<ActionResult<Candidate>> CreateCandidate(Candidate candidate)
         {

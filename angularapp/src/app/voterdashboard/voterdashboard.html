@@ -1,2 +1,17 @@
-<h2>Voter Dashboard</h2>
-<p>Welcome {{ user?.firstName }} {{ user?.lastName }}</p>
+<div class="voter-dashboard">
+  <h2>Welcome, {{ user?.firstName }}</h2>
+
+  <h3>Candidates</h3>
+  <ul>
+    <li *ngFor="let candidate of candidates">
+      <label>
+        <input type="radio" name="candidate" [value]="candidate.id" [(ngModel)]="selectedCandidateId" />
+        {{ candidate.name }}
+      </label>
+    </li>
+  </ul>
+
+  <button (click)="vote()">Vote</button>
+
+  <div *ngIf="message" class="message">{{ message }}</div>
+</div>
